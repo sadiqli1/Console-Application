@@ -1,0 +1,14 @@
+C:\Users\isasa\Desktop\Console-Application\Console-Application\Console-Application\obj\Debug\netcoreapp3.1\Console-Application.csproj.AssemblyReference.cache
+C:\Users\isasa\Desktop\Console-Application\Console-Application\Console-Application\obj\Debug\netcoreapp3.1\Console-Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\isasa\Desktop\Console-Application\Console-Application\Console-Application\obj\Debug\netcoreapp3.1\Console-Application.AssemblyInfoInputs.cache
+C:\Users\isasa\Desktop\Console-Application\Console-Application\Console-Application\obj\Debug\netcoreapp3.1\Console-Application.AssemblyInfo.cs
+C:\Users\isasa\Desktop\Console-Application\Console-Application\Console-Application\obj\Debug\netcoreapp3.1\Console-Application.csproj.CoreCompileInputs.cache
+C:\Users\isasa\Desktop\Console-Application\Console-Application\Console-Application\bin\Debug\netcoreapp3.1\Console-Application.exe
+C:\Users\isasa\Desktop\Console-Application\Console-Application\Console-Application\bin\Debug\netcoreapp3.1\Console-Application.deps.json
+C:\Users\isasa\Desktop\Console-Application\Console-Application\Console-Application\bin\Debug\netcoreapp3.1\Console-Application.runtimeconfig.json
+C:\Users\isasa\Desktop\Console-Application\Console-Application\Console-Application\bin\Debug\netcoreapp3.1\Console-Application.runtimeconfig.dev.json
+C:\Users\isasa\Desktop\Console-Application\Console-Application\Console-Application\bin\Debug\netcoreapp3.1\Console-Application.dll
+C:\Users\isasa\Desktop\Console-Application\Console-Application\Console-Application\bin\Debug\netcoreapp3.1\Console-Application.pdb
+C:\Users\isasa\Desktop\Console-Application\Console-Application\Console-Application\obj\Debug\netcoreapp3.1\Console-Application.dll
+C:\Users\isasa\Desktop\Console-Application\Console-Application\Console-Application\obj\Debug\netcoreapp3.1\Console-Application.pdb
+C:\Users\isasa\Desktop\Console-Application\Console-Application\Console-Application\obj\Debug\netcoreapp3.1\Console-Application.genruntimeconfig.cache
