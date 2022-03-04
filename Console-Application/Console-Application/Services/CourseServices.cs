@@ -30,14 +30,22 @@ namespace Console_Application.Services
                 Console.WriteLine(group);
             }
         }
-        //public void EditGroup(string no, string newno)
-        //{
-        //    Group existedGroup = FindGroup(no); 
-        //    if (existedGroup == null)
-        //    {
-        //        Console.WriteLine("Please choose correct group no");
-        //    }
-        //}
+        public void EditGroup(string no, string newno)
+        {
+            //Group existedGroup = FindGroup(no);
+            //if (existedGroup == null)
+            //{
+            //    Console.WriteLine("Please choose correct group no");
+            //}
+            //foreach (Group group in Groups)
+            //{
+            //    if (group.No.ToLower().Trim() == newno.ToLower().Trim())
+            //    {
+            //        Console.WriteLine($"{newno} hall already exist");
+            //        return;
+            //    }
+            //}
+        }
         public Group FindGroup(string no)
         {
             foreach (Group group in Groups)
@@ -52,11 +60,11 @@ namespace Console_Application.Services
         public void GetGroupStudents(string no)
         {
             Group group = FindGroup(no);
-            if (group==null)
+            if (group == null)
             {
                 Console.WriteLine("Please choose valid group no");
             }
-            foreach (Student student in group.Students)
+            foreach (Student student in _students)
             {
                 Console.WriteLine(student);
             }
@@ -65,11 +73,6 @@ namespace Console_Application.Services
         {
             throw new NotImplementedException();
         }
-        public void EditGroup()
-        {
-            throw new NotImplementedException();
-        }
-
         public void GetGroupStudents()
         {
             throw new NotImplementedException();

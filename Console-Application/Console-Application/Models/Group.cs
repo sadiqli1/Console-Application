@@ -39,7 +39,10 @@ namespace Console_Application
             {
                 Limit = 10;
             }
-
+        }
+        public override string ToString()
+        {
+            return $"No:{No},Category:{Category}";
         }
     }
 }

@@ -15,6 +15,11 @@ namespace Console_Application
             GroupNo = groupno; 
             isWarranted = iswaranted;
         }
-       
+        public override string ToString()
+        {
+            return $"FullName:{Fullname},GroupNo:{GroupNo}";
+
+        }
+
     }
 }

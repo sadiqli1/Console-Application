@@ -55,9 +55,19 @@ namespace Console_Application.Services
             }
         }
 
-        internal static void EditHallMenu()
+        public static void EditGroupMenu()
         {
-            throw new NotImplementedException();
+            //Console.WriteLine("Please choose group no");
+            //string No = Console.ReadLine();
+            //Console.WriteLine("Please choose new group no");
+            //string NewNo = Console.ReadLine();
+            //CourseServices.EditGroup(No,NewNo);
+        }
+        public static void GetGroupStudentsMenu()
+        {
+            Console.WriteLine("Please choose group no");
+            string no = Console.ReadLine();
+            courseservices.GetGroupStudents(no);
         }
 
         public static void GetAllGroupMenu()
@@ -74,6 +84,17 @@ namespace Console_Application.Services
                 string[] fulnamestr = fullname.Split(" ");
                 foreach (string item in fulnamestr)
                 {
+                    for (int i = 1; i < item.Length; i++)
+                    {
+                        if (char.IsDigit(item[i]))
+                        {
+                            resault = true;
+                        }
+                        else
+                        {
+                            resault = false;
+                        }
+                    }
                     if (char.IsUpper(item[0]))
                     {
                         resault = true;
@@ -85,30 +106,40 @@ namespace Console_Application.Services
                     }
                 }
             } while (resault == false);
-            bool resault1;
-            Console.WriteLine("Please write groupno");
+            bool resault1=false;
             do
             {
+                Console.WriteLine("Please write groupno");
                 string groupno = Console.ReadLine();
-                bool hasupper1 = false;
-                bool hasdigit1 = false;
                 if (groupno.Length == 4)
                 {
-                    for (int i = 0; i < groupno.Length; i++)
+                    if (char.IsUpper(groupno[0]))
                     {
-                        if (char.IsUpper(groupno[0]) && char.IsDigit(groupno[i]))
+                        resault1 = true;
+                        for (int i = 1; i < groupno.Length; i++)
                         {
-                            hasupper1 = true;
-                            hasdigit1 = true;
+                            if (char.IsDigit(groupno[i]))
+                            {
+                                resault1 = true;
+                            }
+                            else
+                            {
+                                resault1 = false;
+                                break;
+                            }
                         }
                     }
-                    Console.WriteLine("Please chosse correct groupno");
+                    else
+                    {
+                        resault1 = false;
+                        break;
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("Please chosse correct groupno");
+                    resault1 = false;
+                    break;
                 }
-                resault1 = hasupper1 && hasdigit1;
             } while (resault1==false);
             bool resaultiswarranted;
             do
