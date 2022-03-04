@@ -8,6 +8,6 @@ namespace Console_Application
     {
         Programing=1,
         Design,
-        System_Administration,
+        System_Administration
     }
 }

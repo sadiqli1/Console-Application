@@ -13,7 +13,7 @@ namespace Console_Application
         public int Limit;
         public Student[] Students;
 
-        public Group(string no, Categories category,bool isonline)
+        public Group(Categories category,bool isonline)
         {
             switch (category) 
             {
@@ -30,6 +30,7 @@ namespace Console_Application
                     break;
             }
             Category = category;
+            count++;
             if (isonline==true)
             {
                 Limit = 15;
@@ -38,6 +39,7 @@ namespace Console_Application
             {
                 Limit = 10;
             }
+
         }
     }
 }
