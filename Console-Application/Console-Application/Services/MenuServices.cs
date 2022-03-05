@@ -57,11 +57,11 @@ namespace Console_Application.Services
 
         public static void EditGroupMenu()
         {
-            //Console.WriteLine("Please choose group no");
-            //string No = Console.ReadLine();
-            //Console.WriteLine("Please choose new group no");
-            //string NewNo = Console.ReadLine();
-            //CourseServices.EditGroup(No,NewNo);
+            Console.WriteLine("Please choose group no");
+            string No = Console.ReadLine();
+            Console.WriteLine("Please choose new group no");
+            string NewNo = Console.ReadLine();
+            courseservices.EditGroup(No,NewNo);
         }
         public static void GetGroupStudentsMenu()
         {
@@ -74,27 +74,24 @@ namespace Console_Application.Services
         {
             courseservices.GetAllGroup();
         }
+        public static void GelAllStudentsMenu() 
+        {
+            courseservices.GetAllStudent();
+        }
         public static void CreatedStudentMenu()
         {
             bool resault=false;
+            string groupno;
+            bool iswarranted;
+            string fullname;
             do
             {
                 Console.WriteLine("Please write name and surname(Example:Barack Obama)");
-                string fullname = Console.ReadLine();
+                 fullname = Console.ReadLine();
+                
                 string[] fulnamestr = fullname.Split(" ");
                 foreach (string item in fulnamestr)
                 {
-                    for (int i = 1; i < item.Length; i++)
-                    {
-                        if (char.IsDigit(item[i]))
-                        {
-                            resault = true;
-                        }
-                        else
-                        {
-                            resault = false;
-                        }
-                    }
                     if (char.IsUpper(item[0]))
                     {
                         resault = true;
@@ -110,7 +107,7 @@ namespace Console_Application.Services
             do
             {
                 Console.WriteLine("Please write groupno");
-                string groupno = Console.ReadLine();
+                 groupno = Console.ReadLine();
                 if (groupno.Length == 4)
                 {
                     if (char.IsUpper(groupno[0]))
@@ -145,10 +142,10 @@ namespace Console_Application.Services
             do
             {
                 Console.WriteLine("is warranted student?");
-                bool iswarranted;
                 string iswarrantedstr = Console.ReadLine();
                 resaultiswarranted = bool.TryParse(iswarrantedstr, out iswarranted);
             } while (resaultiswarranted==false);
+            courseservices.CreatedStudents(fullname,groupno,iswarranted);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Console_Application
         public Categories Category;
         public bool isOnline;
         public int Limit;
-        public Student[] Students;
+        public List<Student> Students;
 
         public Group(Categories category,bool isonline)
         {

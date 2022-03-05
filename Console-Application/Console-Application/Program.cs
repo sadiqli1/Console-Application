@@ -31,8 +31,14 @@ namespace Console_Application
                         case 2:
                                 MenuServices.GetAllGroupMenu();
                             break ;
+                            case 3:
+                                MenuServices.EditGroupMenu();
+                            break;
                         case 4:
                                 MenuServices.GetGroupStudentsMenu();
+                            break;
+                        case 5:
+                            MenuServices.GelAllStudentsMenu();
                             break;
                         case 6:
                             MenuServices.CreatedStudentMenu();

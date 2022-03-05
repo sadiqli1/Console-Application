@@ -16,6 +16,7 @@ namespace Console_Application.Services
         public string CreatedGroup(Categories categories,bool isonline)
         {
             Group group = new Group(categories,isonline);
+            group.Students = new List<Student>();
             Groups.Add(group);
             return group.No;
         }
@@ -33,55 +34,81 @@ namespace Console_Application.Services
         public void EditGroup(string no, string newno)
         {
             //Group existedGroup = FindGroup(no);
-            //if (existedGroup == null)
-            //{
-            //    Console.WriteLine("Please choose correct group no");
-            //}
-            //foreach (Group group in Groups)
-            //{
-            //    if (group.No.ToLower().Trim() == newno.ToLower().Trim())
-            //    {
-            //        Console.WriteLine($"{newno} hall already exist");
-            //        return;
-            //    }
-            //}
-        }
-        public Group FindGroup(string no)
-        {
+            Group group1 = Groups.Find(x => x.No.Trim().ToLower() == no.Trim().ToLower());
+            if (group1 == null)
+            {
+                Console.WriteLine("Please choose correct group no");
+            }
             foreach (Group group in Groups)
             {
-                if (group.No.ToLower().Trim() == no.ToLower().Trim())
+                if (group.No.ToLower().Trim() == newno.ToLower().Trim())
                 {
-                    return group;
+                    Console.WriteLine($"{newno} hall already exist");
+                    return;
                 }
             }
-            return null;
+            group1.No = newno;
+            Console.WriteLine($"{no} hall succesfully change to {newno}");
         }
+        //public Group FindGroup(string no)
+        //{
+        //    foreach (Group group in Groups)
+        //    {
+        //        if (group.No.ToLower().Trim() == no.ToLower().Trim())
+        //        {
+        //            return group;
+        //        }
+        //    }
+        //    return null;
+        //}
         public void GetGroupStudents(string no)
         {
-            Group group = FindGroup(no);
+            //Group group = FindGroup(no);
+            Group group = Groups.Find(x=>x.No.Trim().ToLower() == no.Trim().ToLower());
+
+            if (Groups.Count==0)
+            {
+                Console.WriteLine("Error");
+            }
             if (group == null)
             {
                 Console.WriteLine("Please choose valid group no");
             }
-            foreach (Student student in _students)
+            else
             {
-                Console.WriteLine(student);
+                foreach (Student student in group.Students)
+                {
+                    Console.WriteLine(student);
+                }
             }
         }
         public void GetAllStudent()
         {
-            throw new NotImplementedException();
+            foreach (Student student in Students)
+            {
+                Console.WriteLine(student);
+            }
         }
-        public void GetGroupStudents()
-        {
-            throw new NotImplementedException();
-        }
-
         public string CreatedStudents(string fullname, string groupno, bool iswarranted)
         {
             Student student = new Student(fullname, groupno, iswarranted);
-            Students.Add(student);
+
+            if (groupno!=null)
+            {
+                Group _group = Groups.Find(x => x.No.Trim().ToLower() == groupno.Trim().ToLower());
+                if (_group != null)
+                {
+                    _group.Students.Add(student);
+                }
+                else
+                {
+                    Console.WriteLine("Group not exist");
+                    return "";
+                }
+            }
+            //Group group = Groups.Find(x=>x.No.Trim().ToLower() == groupno.Trim().ToLower());
+            //group.Students.Add(student);
+            //Students.Add(student);
             return student.GroupNo;
         }
     }
