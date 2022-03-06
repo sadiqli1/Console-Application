@@ -10,53 +10,62 @@ namespace Console_Application.Services
 
         public static void CreatedGroupMenu()
         {
-            Console.WriteLine("is Group online?(true/false)");
+            bool resaultIsonline = false;
             bool isonline;
-            string isonlineStr = Console.ReadLine();
-            bool resaultIsonline = bool.TryParse(isonlineStr, out isonline);
-            if (resaultIsonline)
+            do
+            {
+                Console.WriteLine("is Group online? (yes or no)");
+                string isonlineStr = Console.ReadLine();
+                if (isonlineStr == "yes")
+                {
+                    isonlineStr = "true";
+                }
+                else if (isonlineStr == "no")
+                {
+                    isonlineStr = "false";
+                }
+                resaultIsonline = bool.TryParse(isonlineStr, out isonline);
+            } while (resaultIsonline == false);
+
+            bool resaultCat = false;
+            int category;
+            string catStr;
+            do
             {
                 Console.WriteLine("Please choose category");
                 foreach (Categories c in System.Enum.GetValues(typeof(Categories)))
                 {
                     Console.WriteLine($"{(int)c}. {c}");
                 }
-                int category;
-                string catStr = Console.ReadLine();
-                bool resultCat = int.TryParse(catStr, out category);
-                if (resultCat) 
-                {
-                    switch (category)
-                    {
-                        case (int)Categories.Programing:
-                            string No = courseservices.CreatedGroup(Categories.Programing, isonline);
-                            Console.WriteLine($"{No} Group succesfully created");
-                            break;
-                        case (int)Categories.Design:
-                            No = courseservices.CreatedGroup(Categories.Design, isonline);
-                            Console.WriteLine($"{No} Group succesfully created");
-                            break;
-                        case (int)Categories.System_Administration:
-                            No = courseservices.CreatedGroup(Categories.System_Administration, isonline);
-                            Console.WriteLine($"{No} Group succesfully created");
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Please choose valid category");
-                }
-            }
-            else
+                catStr = Console.ReadLine();
+                resaultCat = int.TryParse(catStr, out category);
+            } while (resaultCat == false) ;
+
+            switch (category)
             {
-                Console.WriteLine("Please chose valid is online(true\false)");
+                case (int)Categories.Programing:
+                    string No = courseservices.CreatedGroup(Categories.Programing, isonline);
+                    Console.WriteLine($"{No} Group succesfully created");
+                    break;
+                case (int)Categories.Design:
+                    No = courseservices.CreatedGroup(Categories.Design, isonline);
+                    Console.WriteLine($"{No} Group succesfully created");
+                    break;
+                case (int)Categories.System_Administration:
+                    No = courseservices.CreatedGroup(Categories.System_Administration, isonline);
+                    Console.WriteLine($"{No} Group succesfully created");
+                    break;
+                default:
+                    break;
             }
         }
-
+        public static void GetAllGroupMenu()
+        {
+            courseservices.GetAllGroup();
+        }
         public static void EditGroupMenu()
         {
+            //Group group1 = courseservices.Groups.Find(x => x.No == no);
             Console.WriteLine("Please choose group no");
             string No = Console.ReadLine();
             Console.WriteLine("Please choose new group no");
@@ -69,11 +78,6 @@ namespace Console_Application.Services
             string no = Console.ReadLine();
             courseservices.GetGroupStudents(no);
         }
-
-        public static void GetAllGroupMenu()
-        {
-            courseservices.GetAllGroup();
-        }
         public static void GelAllStudentsMenu() 
         {
             courseservices.GetAllStudent();
@@ -84,30 +88,50 @@ namespace Console_Application.Services
             string groupno;
             bool iswarranted;
             string fullname;
+            bool hasupper = false;
+            bool haslower = false;
+            bool hasdigit = false;
             do
             {
                 Console.WriteLine("Please write name and surname(Example:Barack Obama)");
-                 fullname = Console.ReadLine();
+                fullname = Console.ReadLine();
                 
                 string[] fulnamestr = fullname.Split(" ");
                 foreach (string item in fulnamestr)
                 {
                     if (char.IsUpper(item[0]))
                     {
-                        resault = true;
+                        hasupper = true;
                     }
                     else
                     {
-                        resault = false;
+                        hasupper = false;
                         break;
                     }
+                    for (int i = 1; i < item.Length; i++)
+                    {
+                        if (char.IsLower(item[i])&&!char.IsDigit(item[i]))
+                        {
+                            haslower = true;
+                            hasdigit = true;
+                        }
+                        else
+                        {
+                            haslower = false;
+                            hasdigit = false;
+                            break ;
+                        }
+                    }
                 }
+                resault = hasupper && haslower && hasdigit;
             } while (resault == false);
-            bool resault1=false;
+            bool resault1 = false;
+            bool hasupper1 = false;
+            bool hasdigit1 = false;
             do
             {
                 Console.WriteLine("Please write groupno");
-                 groupno = Console.ReadLine();
+                groupno = Console.ReadLine();
                 if (groupno.Length == 4)
                 {
                     if (char.IsUpper(groupno[0]))
@@ -117,27 +141,27 @@ namespace Console_Application.Services
                         {
                             if (char.IsDigit(groupno[i]))
                             {
-                                resault1 = true;
+                                hasdigit1 = true;
                             }
                             else
                             {
-                                resault1 = false;
+                                hasdigit1 = false;
                                 break;
                             }
                         }
                     }
                     else
                     {
-                        resault1 = false;
-                        break;
+                        hasupper1 = false;
+                        
                     }
                 }
                 else
                 {
                     resault1 = false;
-                    break;
                 }
-            } while (resault1==false);
+                resault1 = hasupper1 && hasdigit1;
+            } while (resault1 == false);
             bool resaultiswarranted;
             do
             {

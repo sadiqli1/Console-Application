@@ -34,7 +34,12 @@ namespace Console_Application.Services
         public void EditGroup(string no, string newno)
         {
             //Group existedGroup = FindGroup(no);
-            Group group1 = Groups.Find(x => x.No.Trim().ToLower() == no.Trim().ToLower());
+            Group group1 = Groups.Find(x => x.No == no);
+            //do
+            //{
+            //    Console.WriteLine("Please choose correct group no");
+
+            //} while (group1==null);
             if (group1 == null)
             {
                 Console.WriteLine("Please choose correct group no");
@@ -43,12 +48,12 @@ namespace Console_Application.Services
             {
                 if (group.No.ToLower().Trim() == newno.ToLower().Trim())
                 {
-                    Console.WriteLine($"{newno} hall already exist");
+                    Console.WriteLine($"{newno} group already exist");
                     return;
                 }
             }
             group1.No = newno;
-            Console.WriteLine($"{no} hall succesfully change to {newno}");
+            Console.WriteLine($"{no} group succesfully change to {newno}");
         }
         //public Group FindGroup(string no)
         //{
