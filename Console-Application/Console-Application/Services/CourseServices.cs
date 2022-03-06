@@ -33,16 +33,11 @@ namespace Console_Application.Services
         }
         public void EditGroup(string no, string newno)
         {
-            //Group existedGroup = FindGroup(no);
-            Group group1 = Groups.Find(x => x.No == no);
-            //do
-            //{
-            //    Console.WriteLine("Please choose correct group no");
-
-            //} while (group1==null);
-            if (group1 == null)
+            Group existedGroup = FindGroup(no);
+            if (existedGroup == null)
             {
                 Console.WriteLine("Please choose correct group no");
+                return;
             }
             foreach (Group group in Groups)
             {
@@ -52,32 +47,36 @@ namespace Console_Application.Services
                     return;
                 }
             }
-            group1.No = newno;
+            existedGroup.No = newno.ToUpper();
             Console.WriteLine($"{no} group succesfully change to {newno}");
         }
-        //public Group FindGroup(string no)
-        //{
-        //    foreach (Group group in Groups)
-        //    {
-        //        if (group.No.ToLower().Trim() == no.ToLower().Trim())
-        //        {
-        //            return group;
-        //        }
-        //    }
-        //    return null;
-        //}
+        public Group FindGroup(string no)
+        {
+            foreach (Group group in Groups)
+            {
+                if (group.No.ToLower().Trim() == no.ToLower().Trim())
+                {
+                    return group;
+                }
+            }
+            return null;
+        }
         public void GetGroupStudents(string no)
         {
-            //Group group = FindGroup(no);
-            Group group = Groups.Find(x=>x.No.Trim().ToLower() == no.Trim().ToLower());
+            Group group = FindGroup(no);
+            //Group group = Groups.Find(x=>x.No.Trim().ToLower() == no.Trim().ToLower());
 
-            if (Groups.Count==0)
-            {
-                Console.WriteLine("Error");
-            }
+            //if (Groups.Count==0)
+            //{
+            //    Console.WriteLine("Error");
+            //}
             if (group == null)
             {
                 Console.WriteLine("Please choose valid group no");
+            }
+            else if (Groups.Count==0)
+            {
+                Console.WriteLine("Free group");
             }
             else
             {
@@ -104,6 +103,7 @@ namespace Console_Application.Services
                 if (_group != null)
                 {
                     _group.Students.Add(student);
+                    Console.WriteLine("\nStudent created");
                 }
                 else
                 {
@@ -111,9 +111,9 @@ namespace Console_Application.Services
                     return "";
                 }
             }
-            //Group group = Groups.Find(x=>x.No.Trim().ToLower() == groupno.Trim().ToLower());
-            //group.Students.Add(student);
-            //Students.Add(student);
+            Group group = Groups.Find(x => x.No.Trim().ToLower() == groupno.Trim().ToLower());
+            group.Students.Add(student);
+            Students.Add(student);
             return student.GroupNo;
         }
     }

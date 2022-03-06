@@ -65,12 +65,11 @@ namespace Console_Application.Services
         }
         public static void EditGroupMenu()
         {
-            //Group group1 = courseservices.Groups.Find(x => x.No == no);
             Console.WriteLine("Please choose group no");
-            string No = Console.ReadLine();
+            string no = Console.ReadLine();
             Console.WriteLine("Please choose new group no");
-            string NewNo = Console.ReadLine();
-            courseservices.EditGroup(No,NewNo);
+            string newno = Console.ReadLine();
+            courseservices.EditGroup(no,newno);
         }
         public static void GetGroupStudentsMenu()
         {
@@ -136,7 +135,7 @@ namespace Console_Application.Services
                 {
                     if (char.IsUpper(groupno[0]))
                     {
-                        resault1 = true;
+                        hasupper1 = true;
                         for (int i = 1; i < groupno.Length; i++)
                         {
                             if (char.IsDigit(groupno[i]))
@@ -165,8 +164,16 @@ namespace Console_Application.Services
             bool resaultiswarranted;
             do
             {
-                Console.WriteLine("is warranted student?");
+                Console.WriteLine("is warranted student? (yes/no)");
                 string iswarrantedstr = Console.ReadLine();
+                if (iswarrantedstr=="yes")
+                {
+                    iswarrantedstr = "true";
+                }
+                else if (iswarrantedstr=="no")
+                {
+                    iswarrantedstr = "true";
+                }
                 resaultiswarranted = bool.TryParse(iswarrantedstr, out iswarranted);
             } while (resaultiswarranted==false);
             courseservices.CreatedStudents(fullname,groupno,iswarranted);

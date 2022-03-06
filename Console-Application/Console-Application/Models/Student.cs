@@ -17,8 +17,7 @@ namespace Console_Application
         }
         public override string ToString()
         {
-            return $"FullName:{Fullname},GroupNo:{GroupNo}";
-
+            return $"FullName:{Fullname},GroupNo:{GroupNo},IsWarranted:{isWarranted}"; 
         }
 
     }
