@@ -7,9 +7,11 @@ namespace Console_Application
     class Group
     {
         public static int count=100;
+        public static int count1 = 100;
+        public static int count2 = 100;
         public string No;
         public Categories Category;
-        public bool isOnline;
+        public static  bool isOnline;
         public int Limit;
         public List<Student> Students;
 
@@ -19,18 +21,20 @@ namespace Console_Application
             {
                 case Categories.Programing:
                     No = $"P{count}";
+                    count++;
                     break;
                 case Categories.Design:
-                    No = $"D{count}";
+                    No = $"D{count1}";
+                    count1++;
                     break;
                 case Categories.System_Administration:
-                    No = $"SA{count}";
+                    No = $"S{count2}";
+                    count2++;
                     break;
                 default:
                     break;
             }
             Category = category;
-            count++;
             if (isonline==true)
             {
                 Limit = 15;
@@ -42,7 +46,7 @@ namespace Console_Application
         }
         public override string ToString()
         {
-            return $"No:{No},Category:{Category}";
+            return $"No:{No},Category:{Category},Limit:{Limit}";
         }
     }
 }

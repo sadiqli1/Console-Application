@@ -30,6 +30,7 @@ namespace Console_Application.Services
             bool resaultCat = false;
             int category;
             string catStr;
+            bool resaultnum = false;
             do
             {
                 Console.WriteLine("Please choose category");
@@ -39,7 +40,8 @@ namespace Console_Application.Services
                 }
                 catStr = Console.ReadLine();
                 resaultCat = int.TryParse(catStr, out category);
-            } while (resaultCat == false) ;
+                resaultnum = catStr == "1" || catStr == "2" || catStr == "3";
+            } while (resaultCat == false || resaultnum==false) ;
 
             switch (category)
             {
@@ -66,10 +68,10 @@ namespace Console_Application.Services
         public static void EditGroupMenu()
         {
             Console.WriteLine("Please choose group no");
-            string no = Console.ReadLine();
+            string _no = Console.ReadLine();
             Console.WriteLine("Please choose new group no");
-            string newno = Console.ReadLine();
-            courseservices.EditGroup(no,newno);
+            string _newno = Console.ReadLine();
+            courseservices.EditGroup(_no,_newno);
         }
         public static void GetGroupStudentsMenu()
         {
