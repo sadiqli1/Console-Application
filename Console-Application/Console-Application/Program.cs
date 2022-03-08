@@ -32,7 +32,7 @@ namespace Console_Application
                                 MenuServices.GetAllGroupMenu();
                             break ;
                             case 3:
-                                MenuServices.EditGroupMenu();
+                            MenuServices.EditGroupMenu();
                             break;
                         case 4:
                                 MenuServices.GetGroupStudentsMenu();

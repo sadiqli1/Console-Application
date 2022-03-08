@@ -68,10 +68,50 @@ namespace Console_Application.Services
         public static void EditGroupMenu()
         {
             Console.WriteLine("Please choose group no");
-            string _no = Console.ReadLine();
+            string no = Console.ReadLine();
             Console.WriteLine("Please choose new group no");
-            string _newno = Console.ReadLine();
-            courseservices.EditGroup(_no,_newno);
+            string newno = Console.ReadLine();
+            courseservices.EditGroup(no, newno);
+            //string newno;
+            //bool resault2 = false;
+            //bool hasupper2 = false;
+            //bool hasdigit2 = false;
+            //do
+            //{
+            //    Console.WriteLine("Please choose new group no");
+            //    newno = Console.ReadLine();
+            //    if (newno.Length == 4)
+            //    {
+            //        if (char.IsUpper(newno[0]))
+            //        {
+            //            hasupper2 = true;
+            //            for (int i = 1; i < newno.Length; i++)
+            //            {
+            //                if (char.IsDigit(newno[i]))
+            //                {
+            //                    hasdigit2 = true;
+            //                }
+            //                else
+            //                {
+            //                    hasdigit2 = false;
+            //                    break;
+            //                }
+            //            }
+            //        }
+            //        else
+            //        {
+            //            hasupper2 = false;
+            //            break;
+            //        }
+            //    }
+            //    else
+            //    {
+            //        resault2 = false;
+            //        break;
+            //    }
+            //    resault2 = hasdigit2 && hasupper2;
+
+            //} while (resault2 == false);
         }
         public static void GetGroupStudentsMenu()
         {
@@ -126,6 +166,7 @@ namespace Console_Application.Services
                 }
                 resault = hasupper && haslower && hasdigit;
             } while (resault == false);
+
             bool resault1 = false;
             bool hasupper1 = false;
             bool hasdigit1 = false;
@@ -154,7 +195,7 @@ namespace Console_Application.Services
                     else
                     {
                         hasupper1 = false;
-                        
+
                     }
                 }
                 else

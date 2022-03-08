@@ -17,8 +17,7 @@ namespace Console_Application
         }
         public override string ToString()
         {
-            Group.isOnline;
-            return $"FullName:{Fullname},GroupNo:{GroupNo},IsWarranted:{isWarranted},Isonline:{isOnlo}"; 
+            return $"FullName:{Fullname},GroupNo:{GroupNo},IsWarranted:{isWarranted}"; 
         }
 
     }

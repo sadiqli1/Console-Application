@@ -34,17 +34,18 @@ namespace Console_Application.Services
         public void EditGroup(string no, string newno)
         {
             Group existedGroup = FindGroup(no);
-            if (existedGroup == null)
+            while (existedGroup == null)
             {
                 Console.WriteLine("Please choose correct group no");
-                return;
+                no = Console.ReadLine();
             }
             foreach (Group group in Groups)
             {
-                if (group.No.ToLower().Trim() == newno.ToLower().Trim())
+                
+                while (group.No.ToLower().Trim() == newno.ToLower().Trim())
                 {
                     Console.WriteLine($"{newno} group already exist");
-                    return;
+                    newno = Console.ReadLine();
                 }
             }
             existedGroup.No = newno.ToUpper();
@@ -64,19 +65,13 @@ namespace Console_Application.Services
         public void GetGroupStudents(string no)
         {
             Group group = FindGroup(no);
-            //Group group = Groups.Find(x=>x.No.Trim().ToLower() == no.Trim().ToLower());
-
-            //if (Groups.Count==0)
-            //{
-            //    Console.WriteLine("Error");
-            //}
             if (group == null)
             {
                 Console.WriteLine("Please choose valid group no");
             }
-            else if (Groups.Count==0)
+            else if (Students.Count==0)
             {
-                Console.WriteLine("Free group");
+                Console.WriteLine("Empty group");
             }
             else
             {
