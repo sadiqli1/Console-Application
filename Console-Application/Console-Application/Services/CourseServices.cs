@@ -50,6 +50,13 @@ namespace Console_Application.Services
                 }
             }
             existedGroup.No = newno.ToUpper();
+            foreach (Student item in Students)
+            {
+                if (item.GroupNo==no)
+                {
+                    item.GroupNo = newno;
+                }
+            }
             //Groups.Add(newno);
             Console.WriteLine($"{no} group succesfully change to {newno}");
         }

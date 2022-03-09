@@ -8,6 +8,7 @@ namespace Console_Application
         static void Main(string[] args)
         {
             int selection;
+            bool resault = false;
             do
             {
                 Console.WriteLine("\n1. Create Group");
@@ -19,9 +20,9 @@ namespace Console_Application
                 Console.WriteLine("0. Exit");
 
                 string strSelection = Console.ReadLine();
-                bool result = int.TryParse(strSelection, out selection);
+                resault = int.TryParse(strSelection, out selection);
 
-                if (result)
+                if (resault)
                 {
                     switch (selection)
                     {
@@ -48,7 +49,7 @@ namespace Console_Application
                             break;
                     }
                 }
-            } while (selection != 0);
+            } while (selection != 0 || resault==false);
 
         }
 
