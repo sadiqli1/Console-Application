@@ -11,7 +11,7 @@ namespace Console_Application
         public static int count2 = 100;
         public string No;
         public Categories Category;
-        public static  bool isOnline;
+        public static bool isOnline;
         public int Limit;
         public List<Student> Students;
 

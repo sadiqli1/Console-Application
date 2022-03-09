@@ -67,51 +67,13 @@ namespace Console_Application.Services
         }
         public static void EditGroupMenu()
         {
-            Console.WriteLine("Please choose group no");
+            Console.WriteLine("Please enter group no");
             string no = Console.ReadLine();
-            Console.WriteLine("Please choose new group no");
+            Check.Check.CheckGroupNo(no);
+            Console.WriteLine("Please enter new group no");
             string newno = Console.ReadLine();
+            Check.Check.CheckGroupNo(newno);
             courseservices.EditGroup(no, newno);
-            //string newno;
-            //bool resault2 = false;
-            //bool hasupper2 = false;
-            //bool hasdigit2 = false;
-            //do
-            //{
-            //    Console.WriteLine("Please choose new group no");
-            //    newno = Console.ReadLine();
-            //    if (newno.Length == 4)
-            //    {
-            //        if (char.IsUpper(newno[0]))
-            //        {
-            //            hasupper2 = true;
-            //            for (int i = 1; i < newno.Length; i++)
-            //            {
-            //                if (char.IsDigit(newno[i]))
-            //                {
-            //                    hasdigit2 = true;
-            //                }
-            //                else
-            //                {
-            //                    hasdigit2 = false;
-            //                    break;
-            //                }
-            //            }
-            //        }
-            //        else
-            //        {
-            //            hasupper2 = false;
-            //            break;
-            //        }
-            //    }
-            //    else
-            //    {
-            //        resault2 = false;
-            //        break;
-            //    }
-            //    resault2 = hasdigit2 && hasupper2;
-
-            //} while (resault2 == false);
         }
         public static void GetGroupStudentsMenu()
         {
@@ -125,86 +87,17 @@ namespace Console_Application.Services
         }
         public static void CreatedStudentMenu()
         {
-            bool resault=false;
-            string groupno;
-            bool iswarranted;
-            string fullname;
-            bool hasupper = false;
-            bool haslower = false;
-            bool hasdigit = false;
-            do
-            {
-                Console.WriteLine("Please write name and surname(Example:Barack Obama)");
-                fullname = Console.ReadLine();
-                
-                string[] fulnamestr = fullname.Split(" ");
-                foreach (string item in fulnamestr)
-                {
-                    if (char.IsUpper(item[0]))
-                    {
-                        hasupper = true;
-                    }
-                    else
-                    {
-                        hasupper = false;
-                        break;
-                    }
-                    for (int i = 1; i < item.Length; i++)
-                    {
-                        if (char.IsLower(item[i])&&!char.IsDigit(item[i]))
-                        {
-                            haslower = true;
-                            hasdigit = true;
-                        }
-                        else
-                        {
-                            haslower = false;
-                            hasdigit = false;
-                            break ;
-                        }
-                    }
-                }
-                resault = hasupper && haslower && hasdigit;
-            } while (resault == false);
 
-            bool resault1 = false;
-            bool hasupper1 = false;
-            bool hasdigit1 = false;
-            do
-            {
-                Console.WriteLine("Please write groupno");
-                groupno = Console.ReadLine();
-                if (groupno.Length == 4)
-                {
-                    if (char.IsUpper(groupno[0]))
-                    {
-                        hasupper1 = true;
-                        for (int i = 1; i < groupno.Length; i++)
-                        {
-                            if (char.IsDigit(groupno[i]))
-                            {
-                                hasdigit1 = true;
-                            }
-                            else
-                            {
-                                hasdigit1 = false;
-                                break;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        hasupper1 = false;
+            Console.WriteLine("Please write name and surname(Example:Barack Obama)");
+            string fullname = Console.ReadLine();
+            Check.Check.CheckFullname(fullname);
 
-                    }
-                }
-                else
-                {
-                    resault1 = false;
-                }
-                resault1 = hasupper1 && hasdigit1;
-            } while (resault1 == false);
+            Console.WriteLine("Please write groupno");
+            string groupno = Console.ReadLine();
+            Check.Check.CheckGroupNo(groupno);
+
             bool resaultiswarranted;
+            bool iswarranted;
             do
             {
                 Console.WriteLine("is warranted student? (yes/no)");
@@ -215,11 +108,12 @@ namespace Console_Application.Services
                 }
                 else if (iswarrantedstr=="no")
                 {
-                    iswarrantedstr = "true";
+                    iswarrantedstr = "false";
                 }
                 resaultiswarranted = bool.TryParse(iswarrantedstr, out iswarranted);
             } while (resaultiswarranted==false);
             courseservices.CreatedStudents(fullname,groupno,iswarranted);
+            
         }
     }
 }

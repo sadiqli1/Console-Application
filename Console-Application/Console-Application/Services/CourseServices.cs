@@ -39,6 +39,7 @@ namespace Console_Application.Services
                 Console.WriteLine("Please choose correct group no");
                 no = Console.ReadLine();
             }
+            
             foreach (Group group in Groups)
             {
                 
@@ -49,6 +50,7 @@ namespace Console_Application.Services
                 }
             }
             existedGroup.No = newno.ToUpper();
+            //Groups.Add(newno);
             Console.WriteLine($"{no} group succesfully change to {newno}");
         }
         public Group FindGroup(string no)
@@ -107,7 +109,7 @@ namespace Console_Application.Services
                 }
             }
             Group group = Groups.Find(x => x.No.Trim().ToLower() == groupno.Trim().ToLower());
-            group.Students.Add(student);
+            //group.Students.Add(student);
             Students.Add(student);
             return student.GroupNo;
         }

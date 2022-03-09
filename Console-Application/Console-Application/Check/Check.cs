@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+  
 namespace Console_Application.Check
 {
     public static class Check
@@ -13,8 +13,6 @@ namespace Console_Application.Check
             bool hasdigit1 = false;
             do
             {
-                Console.WriteLine("Please write groupno");
-                groupno = Console.ReadLine();
                 if (groupno.Length == 4)
                 {
                     if (char.IsUpper(groupno[0]))
@@ -44,7 +42,56 @@ namespace Console_Application.Check
                     resault1 = false;
                 }
                 resault1 = hasupper1 && hasdigit1;
+                if (resault1 == false)
+                {
+                    Console.WriteLine("Please enter correct groupno");
+                    groupno = Console.ReadLine();
+                }
             } while (resault1 == false);
+        }
+
+        public static void CheckFullname(string fullname)
+        {
+            bool resault = false;
+            bool hasupper = false;
+            bool haslower = false;
+            bool hasdigit = false;
+            do
+            {
+                string[] fulnamestr = fullname.Split(" ");
+                foreach (string item in fulnamestr)
+                {
+                    if (char.IsUpper(item[0]))
+                    {
+                        hasupper = true;
+                    }
+                    else
+                    {
+                        hasupper = false;
+                        break;
+                    }
+                    for (int i = 1; i < item.Length; i++)
+                    {
+                        if (char.IsLower(item[i]) && !char.IsDigit(item[i]))
+                        {
+                            haslower = true;
+                            hasdigit = true;
+                        }
+                        else
+                        {
+                            haslower = false;
+                            hasdigit = false;
+                            break;
+                        }
+                    }
+                }
+                resault = hasupper && haslower && hasdigit;
+                if (resault==false)
+                {
+                    Console.WriteLine("Please enter correct name and surname(Example:Barack Obama)");
+                    fullname = Console.ReadLine();
+                }
+            } while (resault == false);
         }
     }
 }
