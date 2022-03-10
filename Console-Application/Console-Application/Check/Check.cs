@@ -44,7 +44,7 @@ namespace Console_Application.Check
                 resault1 = hasupper1 && hasdigit1;
                 if (resault1 == false)
                 {
-                    Console.WriteLine("Please enter correct groupno");
+                    Console.WriteLine($"Please enter correct {groupno}");
                     groupno = Console.ReadLine();
                 }
             } while (resault1 == false);

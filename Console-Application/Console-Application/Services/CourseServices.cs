@@ -58,10 +58,9 @@ namespace Console_Application.Services
         public void EditGroup(string no, string newno)
         {
             Group existedGroup = FindGroup(no);
-            while (existedGroup == null)
+            if (existedGroup == null)
             {
-                Console.WriteLine("Please choose correct group no");
-                no = Console.ReadLine();
+                Console.WriteLine("There is no group");
             }
 
             foreach (Group group in Groups)
