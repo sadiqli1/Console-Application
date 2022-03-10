@@ -58,10 +58,6 @@ namespace Console_Application.Services
         public void EditGroup(string no, string newno)
         {
             Group existedGroup = FindGroup(no);
-            foreach (var item in Groups)
-            {
-                Console.WriteLine(item);
-            }
             while (existedGroup == null)
             {
                 Console.WriteLine("Please choose correct group no");
@@ -81,10 +77,17 @@ namespace Console_Application.Services
             {
                 if (item.No==no)
                 {
-                    item.No = newno;
+                    if (no[0]==newno[0])
+                    {
+                        item.No = newno;
+                        Console.WriteLine($"{no} group succesfully change to {newno}");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Not the same category");
+                    }
                 }
             }
-            Console.WriteLine($"{no} group succesfully change to {newno}");
         }
         public Group FindGroup(string no)
         {
