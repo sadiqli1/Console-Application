@@ -17,6 +17,7 @@ namespace Console_Application
 
         public Group(Categories category,bool isonline)
         {
+            Students = new List<Student>();
             switch (category) 
             {
                 case Categories.Programing:

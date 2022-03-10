@@ -54,53 +54,63 @@ namespace Console_Application.Check
         {
             bool resault = false;
             bool length = false;
+            bool length1 = false;
             bool hasupper = false;
             bool haslower = false;
             bool hasdigit = false;
             do
             {
                 string[] fulnamestr = fullname.Split(" ");
-                foreach (string item in fulnamestr)
+                if (fulnamestr.Length == 2)
                 {
-                    if (item.Length >= 3)
+                    length1 = true;
+                    foreach (string item in fulnamestr)
                     {
-                        length=true;
-                        if (char.IsUpper(item[0]))
+                        if (item.Length >= 3)
                         {
-                            hasupper = true;
-                        }
-                        else
-                        {
-                            hasupper = false;
-                            break;
-                        }
-                        for (int i = 1; i < item.Length; i++)
-                        {
-                            if (char.IsLower(item[i]) && !char.IsDigit(item[i]))
+                            length = true;
+                            if (char.IsUpper(item[0]))
                             {
-                                haslower = true;
-                                hasdigit = true;
+                                hasupper = true;
                             }
                             else
                             {
-                                haslower = false;
-                                hasdigit = false;
+                                hasupper = false;
                                 break;
                             }
+                            for (int i = 1; i < item.Length; i++)
+                            {
+                                if (char.IsLower(item[i]) && !char.IsDigit(item[i]))
+                                {
+                                    haslower = true;
+                                    hasdigit = true;
+                                }
+                                else
+                                {
+                                    haslower = false;
+                                    hasdigit = false;
+                                    break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            length = false;
+                            break;
                         }
                     }
-                    else
-                    {
-                        length = false;
-                        break;
-                    }
                 }
-                resault = hasupper && haslower && hasdigit&&length;
-                if (resault==false)
+                else
+                {
+                    length1 = false;
+                }
+                resault = hasupper && haslower && hasdigit && length && length1;
+                if (resault == false)
                 {
                     Console.WriteLine("Please enter correct name and surname(Example:Barack Obama)");
                     fullname = Console.ReadLine();
                 }
+
             } while (resault == false);
         }
     }

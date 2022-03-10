@@ -16,8 +16,18 @@ namespace Console_Application.Services
         public string CreatedGroup(Categories categories,bool isonline)
         {
             Group group = new Group(categories,isonline);
-            group.Students = new List<Student>();
-            Groups.Add(group);
+            Group existedGraoup = FindGroup(group.No);
+            //group.Students = new List<Student>();
+            if (existedGraoup==null)
+            {
+                Groups.Add(group);
+            }
+            else
+            {
+                Group.count++;
+                Group.count1++;
+                Group.count2++;
+            }
             return group.No;
         }
         public void GetAllGroup()
@@ -33,13 +43,18 @@ namespace Console_Application.Services
         }
         public void EditGroup(string no, string newno)
         {
-            Group existedGroup = FindGroup(no);
+            //Group existedGroup = FindGroup(no);
+            Group existedGroup = Groups.Find(x => x.No.Trim().ToLower() == no.Trim().ToLower());
+            foreach (var item in Groups)
+            {
+                Console.WriteLine(item);
+            }
             while (existedGroup == null)
             {
                 Console.WriteLine("Please choose correct group no");
                 no = Console.ReadLine();
             }
-            
+
             foreach (Group group in Groups)
             {
                 
@@ -49,15 +64,13 @@ namespace Console_Application.Services
                     newno = Console.ReadLine();
                 }
             }
-            existedGroup.No = newno.ToUpper();
-            foreach (Student item in Students)
+            foreach (Group item in Groups)
             {
-                if (item.GroupNo==no)
+                if (item.No==no)
                 {
-                    item.GroupNo = newno;
+                    item.No = newno;
                 }
             }
-            //Groups.Add(newno);
             Console.WriteLine($"{no} group succesfully change to {newno}");
         }
         public Group FindGroup(string no)
@@ -100,7 +113,6 @@ namespace Console_Application.Services
         public string CreatedStudents(string fullname, string groupno, bool iswarranted)
         {
             Student student = new Student(fullname, groupno, iswarranted);
-
             if (groupno!=null)
             {
                 Group _group = Groups.Find(x => x.No.Trim().ToLower() == groupno.Trim().ToLower());
@@ -116,8 +128,15 @@ namespace Console_Application.Services
                 }
             }
             Group group = Groups.Find(x => x.No.Trim().ToLower() == groupno.Trim().ToLower());
-            //group.Students.Add(student);
-            Students.Add(student);
+            if (group.Students.Count<=group.Limit)
+            {
+                Students.Add(student);
+                group.Students.Add(student);
+            }
+            else
+            {
+                Console.WriteLine("Group is full");
+            }
             return student.GroupNo;
         }
     }

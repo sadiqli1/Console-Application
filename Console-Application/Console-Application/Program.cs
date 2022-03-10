@@ -9,6 +9,7 @@ namespace Console_Application
         {
             int selection;
             bool resault = false;
+            Console.WriteLine("Course Managment Application");
             do
             {
                 Console.WriteLine("\n1. Create Group");
@@ -45,12 +46,11 @@ namespace Console_Application
                             MenuServices.CreatedStudentMenu();
                             break ;
                         default:
-                            Console.WriteLine("Please choose valid number");
+                            Console.WriteLine("\nPlease choose valid number");
                             break;
                     }
                 }
             } while (selection != 0 || resault==false);
-
         }
 
     }
