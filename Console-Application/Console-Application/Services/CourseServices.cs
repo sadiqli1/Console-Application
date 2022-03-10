@@ -17,16 +17,30 @@ namespace Console_Application.Services
         {
             Group group = new Group(categories,isonline);
             Group existedGraoup = FindGroup(group.No);
-            //group.Students = new List<Student>();
             if (existedGraoup==null)
             {
                 Groups.Add(group);
             }
             else
             {
-                Group.count++;
-                Group.count1++;
-                Group.count2++;
+                if (group.No[0].ToString().ToLower()=="p")
+                {
+                    Group.count++;
+                    group.No= $"P{Group.count}";
+                    Groups.Add(group);
+                }
+                else if (group.No[0].ToString().ToLower() == "d")
+                {
+                    Group.count1++;
+                    group.No=$"D{Group.count1}";
+                    Groups.Add(group);
+                }
+                else if (group.No[0].ToString().ToLower() == "s")
+                {
+                    Group.count2++;
+                    group.No=$"S{Group.count2}";
+                    Groups.Add(group);
+                }
             }
             return group.No;
         }
@@ -43,8 +57,7 @@ namespace Console_Application.Services
         }
         public void EditGroup(string no, string newno)
         {
-            //Group existedGroup = FindGroup(no);
-            Group existedGroup = Groups.Find(x => x.No.Trim().ToLower() == no.Trim().ToLower());
+            Group existedGroup = FindGroup(no);
             foreach (var item in Groups)
             {
                 Console.WriteLine(item);
@@ -115,7 +128,7 @@ namespace Console_Application.Services
             Student student = new Student(fullname, groupno, iswarranted);
             if (groupno!=null)
             {
-                Group _group = Groups.Find(x => x.No.Trim().ToLower() == groupno.Trim().ToLower());
+                Group _group = FindGroup(groupno);
                 if (_group != null)
                 {
                     _group.Students.Add(student);
@@ -127,7 +140,7 @@ namespace Console_Application.Services
                     return "";
                 }
             }
-            Group group = Groups.Find(x => x.No.Trim().ToLower() == groupno.Trim().ToLower());
+            Group group = FindGroup(groupno);
             if (group.Students.Count<=group.Limit)
             {
                 Students.Add(student);
